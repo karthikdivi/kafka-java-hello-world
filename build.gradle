@@ -1,0 +1,10 @@
+apply plugin: 'java-library'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	compile group: 'org.apache.kafka', name: 'kafka-clients', version: '1.0.0'
+}
+
