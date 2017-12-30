@@ -38,6 +38,8 @@ public class KafkaHelloWorldConsumer {
 					final ConsumerRecords<Long, String> consumerRecords = consumer.poll(1000);
 					consumerRecords.forEach(record -> {
 						System.out.printf("Consumed Record:(%d, %s, %d, %d)\n", record.key(), record.value(), record.partition(), record.offset());
+						String body = "{\""+record.key()+"\" : \""+record.value()+"\"}";
+						HttpClient.getInstance().post("https://karthikdivi.com/test/samplePostCall", body);
 					});
 					consumer.commitAsync();
 				}
@@ -47,7 +49,6 @@ public class KafkaHelloWorldConsumer {
 				// Ignore
 			}
 		});
-
 	}
 
 	public void close() {
@@ -59,4 +60,5 @@ public class KafkaHelloWorldConsumer {
 			}
 		}
 	}
+
 }
