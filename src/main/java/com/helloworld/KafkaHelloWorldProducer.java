@@ -32,16 +32,6 @@ public class KafkaHelloWorldProducer {
 			System.out.printf("sent record(key=%s value=%s) " + "metadata(partition=%d, offset=%d)\n", record.key(), record.value(), metadata.partition(), metadata.offset());
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		} finally {
-			if (producer != null) {
-				try {
-					producer.flush();
-					producer.close();
-				} catch (Exception e) {
-					// Ignore
-				}
-			}
-
 		}
 		return this;
 	}
